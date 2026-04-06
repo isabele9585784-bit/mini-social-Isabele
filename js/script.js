@@ -16,3 +16,6 @@ function curtir() {
 }
 
 document.getElementById("likeBtn").addEventListener("click", curtir);
+   
+
+
