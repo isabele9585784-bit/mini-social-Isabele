@@ -18,4 +18,25 @@ function curtir() {
 document.getElementById("likeBtn").addEventListener("click", curtir);
    
 
+let DeslikeCount = 0;
+let Deslike = false; // flag booleanna
+
+
+function deslike() {
+  if(Deslike == false){
+    DeslikeCount++;
+    Deslike = true;
+  document.getElementById("deslikeCount").innerText = DeslikeCount;
+  } else{
+    DeslikeCount--;
+    Deslike = false;
+  document.getElementById("deslikeCount").innerText = DeslikeCount;
+  }
+
+}
+
+document.getElementById("deslikeBtn").addEventListener("click", deslike);
+   
+
+
 
