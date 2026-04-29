@@ -1,42 +1,64 @@
-let likeCount = 0;
-let curtido = false; // flag booleanna
+//=== ESATADO (dados da aplicação) ===
 
+let likeCount = 0;
+let dislikeCount = 0;
+let curtido = false;
+let descurtido = false;
+
+//=== SERVICE (regras de negocio) ===
 
 function curtir() {
-  if(curtido == false){
+  if (curtido == false){
     likeCount++;
     curtido = true;
-  document.getElementById("likeCount").innerText = likeCount;
-  } else{
+    document.getElementById("likeCount").innerText = likeCount;
+
+    if(descurtido == true){
+      dislikeCount--;
+      descurtido = false;
+      document.getElementById("dislikeCount").innerText = dislikeCount;
+
+    }
+
+  }else{
     likeCount--;
     curtido = false;
-  document.getElementById("likeCount").innerText = likeCount;
+    document.getElementById("likeCount").innerText = likeCount;
   }
 
 }
 
-document.getElementById("likeBtn").addEventListener("click", curtir);
-   
+function descurtir() {
+  if(descurtido == false){
+    dislikeCount++;
+    descurtido = true;
+    document.getElementById("dislikeCount").innerText = dislikeCount;
 
-let DeslikeCount = 0;
-let Deslike = false; // flag booleanna
+    if(curtido == true){
+      likeCount--;
+      curtido = false;
+      document.getElementById("likeCount").innerText = likeCount;
+    }
 
-
-function deslike() {
-  if(Deslike == false){
-    DeslikeCount++;
-    Deslike = true;
-  document.getElementById("deslikeCount").innerText = DeslikeCount;
-  } else{
-    DeslikeCount--;
-    Deslike = false;
-  document.getElementById("deslikeCount").innerText = DeslikeCount;
   }
-
+  else{
+    dislikeCount--;
+    descurtido = false;
+    document.getElementById("dislikeCount").innerText = dislikeCount;
+  }
 }
 
-document.getElementById("deslikeBtn").addEventListener("click", deslike);
-   
+//===   CONTROLER (intermediação)===
+
+function clicarCurtir(){
+    curtir();
+}
+function clicarDescurtir(){
+    descurtir();
+}
 
 
+// === EVENTOS ===
 
+document.getElementById("likeBtn").addEventListener("click", clicarCurtir);
+document.getElementById("dislikeBtn").addEventListener("click", clicarDescurtir);
